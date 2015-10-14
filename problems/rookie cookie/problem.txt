@@ -2,7 +2,7 @@ Imagine a Kefir stream:
 
   --o--o---o--o--o--o---X
 
-Kefir streams expose a function called `map`. 
+Kefir streams expose a function called `map`. It works similarly to the native JS implementation (Array.prototype.map)
 
 So, if I have a `stream` like this:
 
@@ -27,15 +27,15 @@ Announcements look like this:
   , flavor: 'triple choco dilemma'
   , deliciousness: 7 }
 
-(These announcements also contain recipes, but I have redacted them due to our strict secrecy).
-
-If we receive these message over a websocket connection, we can make these messages into a stream with:
-
-  Kefir.fromEvents(socket, 'cookie-batch-announcement')
-
-I'll pass you this stream of announcements.
+I'll pass you a Kefir stream with announcements like these.
 
 Export a function that takes this stream, and returns a stream of each cookie's deliciousness.
 
+You can pass your stream like this:
+
+  module.exports = function(stream) {
+    stream.map(somethingToMapThrough)
+  }
+  
   Use `$ADVENTURE_COMMAND verify YOUR_PROGRAM.js` to verify your program.
   Use `$ADVENTURE_COMMAND run YOUR_PROGRAM.js` to run your program.
