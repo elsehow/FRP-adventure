@@ -48,7 +48,9 @@ function testSolution (problem) {
   var wrongAnswers = solutionCorrectness.filter(falsey)
   var wrongAnswerStacktraces = solutionTries.sampledBy(wrongAnswers)
   // side effect - log stacktraces to wrong answers
-  wrongAnswerStacktraces.log('stackTraces?', problem)
+  wrongAnswerStacktraces.onValue(function (v) {
+    console.log('stackTrace for', problem, v)
+  })
   // return a stream of solution correctness (booleans)
   return solutionCorrectness
 }
@@ -59,7 +61,8 @@ function verifyProblems (problems) {
   var p = _.first(problems)
   solutionTries = testSolution(p)
   solutionTries.onValue(function (v) {
-    console.log(p, 'is ok?', v)
+    if (v) { console.log(p, 'passes all tests..') }
+    else   { console.log('ERR!', p, 'solution.js doesnt work!') }
     verifyProblems(_.rest(problems))
   })  
 }
