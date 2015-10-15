@@ -2,6 +2,8 @@
 
 Go on an educational FRP (functional-reactive progrmming) adventure!
 
+For this adventure, you'll need some basic javascript (perhaps passed code academy), and some basic jQuery experience.
+
 <!-- travisbuild status -->
 
 # install
